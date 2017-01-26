@@ -6,7 +6,6 @@ import {errorHandler}       from './module-middlewares';
 
 import ilRestIdentity       from './rest-identity';
 import ilRestUsers          from './rest-users';
-import ilRestFileUpload     from './rest-fileupload';
 
 
 const app = express();
@@ -18,7 +17,6 @@ app.use(morgan('dev'));
 
 ilRestIdentity(app);
 ilRestUsers(app);
-ilRestFileUpload(app);
 
 app.use(errorHandler);
 
