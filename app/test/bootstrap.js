@@ -11,7 +11,7 @@ before(function(done) {
 
     const tasks = [
         function (cb) {
-            process.env.IL_ENV = 'test';
+            process.env.ENV = 'test';
             const mongodbUri = get('mongodb_uri');
 
             db.open(mongodbUri, cb);

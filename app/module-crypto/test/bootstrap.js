@@ -1,3 +1,3 @@
 before(() => {
-    process.env.IL_ENV = 'test';
+    process.env.ENV = 'test';
 });
