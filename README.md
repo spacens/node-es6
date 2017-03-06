@@ -24,7 +24,7 @@ There are plenty of methods to export these environment variables, on of the sim
 
 ```
 git clone <repo-url>
-cd es6-basic-project
+cd es6-simple-curd-restful-api
 npm install
 npm start
 ```
