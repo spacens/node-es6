@@ -1,6 +1,10 @@
 {
   "name": "es6-simple-curd-restful-api",
+<<<<<<< HEAD
   "version": "1.0",
+=======
+  "version": "0.9.1",
+>>>>>>> origin/master
   "description": "",
   "main": "index.js",
   "scripts": {
