@@ -1,6 +1,6 @@
 {
-  "name": "ilanlyfe-server",
-  "version": "0.9.1",
+  "name": "es6-simple-curd-restful-api",
+  "version": "1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,8 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://taymoor_pucit@bitbucket.org/grahhal/ilanlyfe-server.git"
-  },
-  "author": "Taimoor Aslam <taymooraslam@gmail.com>",
+  "author": "meandevstar",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/grahhal/ilanlyfe-server#readme",
   "devDependencies": {
     "chance": "^1.0.4",
     "mocha": "^3.2.0",

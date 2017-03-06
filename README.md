@@ -19,17 +19,6 @@ export JWT_EXPIRES_IN=<number of seconds or string formate that is supported by 
 
 There are plenty of methods to export these environment variables, on of the simple method is as follows,
 
-Open **Terminal**
-
-```
-gedit ~/.bashrc
-```
-
-Copy all the above variables in this file, make sure you replace `<>` with the actual value then save and exit.
-
-```
-source ~/.bashrc
-```
 
 ### Run Application
 

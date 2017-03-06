@@ -6,12 +6,5 @@ export default {
     jwt_secret: process.env.JWT_SECRET,
     jwt_algorithm: process.env.JWT_ALGO,
     jwt_expires_in: process.env.JWT_EXPIRES_IN,
-    google_client_id: process.env.GOOGLE_CLIENT_ID,
-    s3_config : {
-        accessKeyId: process.env.S3_ACCESSKEY_ID,
-        secretAccessKey: process.env.S3_SECRET_ACESSKEY,
-        region: process.env.S3_REGION,
-        bucketName: process.env.S3_BUCKET,
-        key: process.env.S3_KEY
-    }
+    google_client_id: process.env.GOOGLE_CLIENT_ID
 }
