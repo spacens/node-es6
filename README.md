@@ -32,7 +32,7 @@ npm start
 
 ### Run Tests
 ```
-cd es6-basic-project
+cd es6-simple-curd-restful-api
 npm test
 ```
 
