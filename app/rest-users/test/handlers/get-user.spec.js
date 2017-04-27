@@ -9,7 +9,7 @@ import app      from '../../../app';
 
 
 
-describe("[GET] /v1/users/:userId", function() {
+describe("[GET] /v1/users/:userId", () => {
 	this.timeout(20000);
 
 	let user            = null;
@@ -25,7 +25,7 @@ describe("[GET] /v1/users/:userId", function() {
 
 
 
-	beforeEach(function(){
+	beforeEach(() => {
 		user        = global.user;
 		userId      = user._id;
 		authToken   = global.authToken;
@@ -35,7 +35,7 @@ describe("[GET] /v1/users/:userId", function() {
 
 
 
-	it('Should get user detail', function(done){
+	it('Should get user detail', (done) => {
 		request(app)
 			.get(`/v1/users/${userId}`)
 			.set('x-access-token', authToken)

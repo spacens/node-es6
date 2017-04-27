@@ -19,7 +19,7 @@ const random = new Chance();
 
 
 
-describe("[POST] /v1/users", function() {
+describe("[POST] /v1/users", () => {
     this.timeout(20000);
 
     let payload = null;
@@ -31,7 +31,7 @@ describe("[POST] /v1/users", function() {
 
     beforeEach(() => {
         payload = generateUser();
-        payload.type = random.pick(without(types, 'admin'));
+        payload.type = random.pick(without(types, 'ADMIN'));
         delete payload.status;
         delete payload.dateCreated;
     });
@@ -49,7 +49,7 @@ describe("[POST] /v1/users", function() {
 
 
 
-    function shouldReturnValidationError(payload, key, done){
+    const shouldReturnValidationError = (payload, key, done) => {
         request(app)
             .post('/v1/users')
             .send(payload)

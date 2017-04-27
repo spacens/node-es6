@@ -6,28 +6,28 @@ import {issueToken}     from '../module-jwt';
 
 const {User} = user;
 
-before(function(done) {
+before((done) => {
     this.timeout(20000);
 
     const tasks = [
-        function (cb) {
+        (cb) => {
             process.env.ENV = 'test';
             const mongodbUri = get('mongodb_uri');
 
             db.open(mongodbUri, cb);
         },
-        function (cb) {
+        (cb) => {
             let doc = generateUser();
 
-            User.create(doc, function(err, result){
+            User.create(doc, (err, result) => {
                 if(err) return cb(err);
                 global.user = result.toObject();
                 cb();
             });
         },
-        function (cb) {
+        (cb) => {
             const {_id, type} = global.user;
-            issueToken({_id, type}, function (err, token) {
+            issueToken({_id, type}, (err, token) => {
                 if(err) return cb(err);
                 global.authToken = token;
                 cb();
@@ -35,21 +35,21 @@ before(function(done) {
         }
     ];
 
-    waterfall(tasks, function (err) {
+    waterfall(tasks, (err) => {
         if(err) console.log(err);
         done();
     });
 });
 
-after(function(done) {
+after((done) => {
     const tasks = [
-        function (cb) {
+        (cb) => {
             if(!global.user) return cb();
             User.findByIdAndRemove(global.user._id, cb);
         }
     ];
 
-    waterfall(tasks, function (err) {
+    waterfall(tasks, (err) => {
         if(err) console.log(err);
         db.close(done);
     });

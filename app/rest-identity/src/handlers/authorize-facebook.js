@@ -14,7 +14,7 @@ import { issueToken }       from '../../../module-jwt';
 
 const router        = new Router();
 const {User, types} = user;
-const allowedTypes  = without(types, 'admin');
+const allowedTypes  = without(types, 'ADMIN');
 const fieldsToOmit  = [
 	'password',
 	'facebook',
@@ -38,7 +38,7 @@ const authorizeFacebook = (req, res, next) => {
 	const {type, accessToken} = req.body;
 
 	const tasks = [
-		function (cb) {
+		(cb) => {
 			const options = {
 				uri: 'https://graph.facebook.com/v2.8/me',
 				json: true,
@@ -48,7 +48,7 @@ const authorizeFacebook = (req, res, next) => {
 				}
 			};
 
-			request(options, function(err, response, body){
+			request(options, (err, response, body) => {
 				if(err) return cb(err);
 
 				let doc = {
@@ -68,38 +68,38 @@ const authorizeFacebook = (req, res, next) => {
 		},
 
 		//Check if user is already registered with us via facebook
-		function (doc, cb) {
+		(doc, cb) => {
 			const query = {'facebook.userId': doc.facebook.userId};
 
-			User.findOne(query, function(err, result){
+			User.findOne(query, (err, result) => {
 				if(err) return cb(err);
 				cb(null, doc, result);
 			});
 		},
 
 		//If user isn't already registered create her account
-		function (doc, result, cb) {
+		(doc, result, cb) => {
 			if(result) return cb(null, result);
 
-			User.create(doc, function(err, result){
+			User.create(doc, (err, result) => {
 				if(err) return cb(err);
 				cb(null, result);
 			});
 		},
 
-		function (result, cb) {
+		(result, cb) => {
 			result              = result.toObject();
 			const {_id, type}   = result;
 			const payload       = {_id, type};
 
-			issueToken(payload, function(err, token){
+			issueToken(payload, (err, token) => {
 				if(err) return cb(err);
 				cb(null, result, token);
 			});
 		}
 	];
 
-	waterfall(tasks, function(err, result, token){
+	waterfall(tasks, (err, result, token) => {
 		if(err) return next(err);
 
 		const userDetails   = omit(result, fieldsToOmit);
@@ -114,7 +114,7 @@ const authorizeFacebook = (req, res, next) => {
 
 
 
-router.post('/v1/users/authorize/facebook', validateRequest(schema), authorizeFacebook);
+router.post('/v1/user/authorize/facebook', validateRequest(schema), authorizeFacebook);
 
 
 

@@ -12,7 +12,7 @@ import {UnprocessableEntityError} from '../../../module-errors';
 
 const router = new Router();
 const {User, types} = user;
-const allowedTypes = without(types, 'admin');
+const allowedTypes = without(types, 'ADMIN');
 const fieldsToOmit = ['password'];
 const allowedFields = [
     'firstName',

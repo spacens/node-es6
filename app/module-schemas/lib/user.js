@@ -1,8 +1,8 @@
 import {Schema} from 'mongoose';
 import {emailRegex, transform} from './utils';
 
-const userStatuses = ['active', 'inactive'];
-const userTypes = ['traveller', 'provider', 'admin'];
+const userStatuses = ['ACTIVE', 'INACTIVE'];
+const userTypes = ['ADMIN', 'USER'];
 
 const userDefinition = {
     firstName: {
@@ -26,7 +26,7 @@ const userDefinition = {
         type: String,
         required: true,
         enum: userStatuses,
-        default: 'active'
+        default: 'ACTIVE'
     },
 
     type: {

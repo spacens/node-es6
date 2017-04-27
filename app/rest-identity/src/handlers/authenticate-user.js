@@ -66,7 +66,7 @@ const authenticate = (req, res, next) => {
 
 
 
-router.post('/v1/users/authenticate', validateRequest(schema), authenticate);
+router.post('/v1/user/authenticate', validateRequest(schema), authenticate);
 
 
 

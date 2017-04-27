@@ -43,11 +43,11 @@ const updateUser = (req, res, next) => {
 	let update  = {$set: {}};
 	let options = {new: true};
 
-	each(payload, function (value, key) {
+	each(payload, (value, key) => {
 		update.$set[key] = value;
 	});
 
-	User.findByIdAndUpdate(userId, update, options, function (err, result) {
+	User.findByIdAndUpdate(userId, update, options, (err, result) => {
 		if(err) return next(err);
 		result = omit(result.toObject(), fieldsToOmit);
 		res.status(200).send(result);
@@ -58,7 +58,7 @@ const updateUser = (req, res, next) => {
 
 
 
-router.put('/v1/users/:userId', verifyToken, validateRequest(schema), updateUser);
+router.put('/v1/user/:userId', verifyToken, validateRequest(schema), updateUser);
 
 
 

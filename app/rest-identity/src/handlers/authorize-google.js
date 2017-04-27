@@ -18,7 +18,7 @@ const {User, types} = user;
 const clientId      = get('google_client_id');
 const auth          = new GoogleAuth();
 const client        = new auth.OAuth2(clientId, '', '');
-const allowedTypes  = without(types, 'admin');
+const allowedTypes  = without(types, 'ADMIN');
 const fieldsToOmit  = [
 	'password',
 	'facebook',
@@ -42,8 +42,8 @@ const authorizeGoogle = (req, res, next) => {
 	const {type, accessToken} = req.body;
 	
 	const tasks = [
-		function (cb) {
-			client.verifyIdToken(accessToken, clientId, function (err, verifiedToken) {
+		(cb) => {
+			client.verifyIdToken(accessToken, clientId, (err, verifiedToken) => {
 				if(err) return cb(err);
 
 				const data = verifiedToken.getPayload();
@@ -63,37 +63,37 @@ const authorizeGoogle = (req, res, next) => {
 			});
 		},
 
-		function (doc, cb) {
+		(doc, cb) => {
 			const query = {'google.userId': doc.google.userId};
 
-			User.findOne(query, function (err, result) {
+			User.findOne(query, (err, result) => {
 				if(err) return cb(err);
 				cb(null, doc, result);
 			});
 		},
 
-		function (doc, result, cb) {
+		(doc, result, cb) => {
 			if(result) return cb(null, result);
 
-			User.create(doc, function (err, result) {
+			User.create(doc, (err, result) => {
 				if(err) return cb(err);
 				cb(null, result);
 			});
 		},
 
-		function (result, cb) {
+		(result, cb) => {
 			result              = result.toObject();
 			const {_id, type}   = result;
 			const payload       = {_id, type};
 
-			issueToken(payload, function (err, token) {
+			issueToken(payload, (err, token) => {
 				if(err) return cb(err);
 				cb(null, result, token);
 			});
 		}
 	];
 
-	waterfall(tasks, function (err, result, token) {
+	waterfall(tasks, (err, result, token) => {
 		if(err) return next(err);
 
 		const userDetails   = omit(result, fieldsToOmit);
@@ -108,7 +108,7 @@ const authorizeGoogle = (req, res, next) => {
 
 
 
-router.post('/v1/users/authorize/google', validateRequest(schema), authorizeGoogle);
+router.post('/v1/user/authorize/google', validateRequest(schema), authorizeGoogle);
 
 
 
