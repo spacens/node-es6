@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "author": "akira",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "chance": "^1.0.4",
