@@ -14,6 +14,3 @@ npm run dev
 ```
 
 you can see [Demo here](https://agile-thicket-20112.herokuapp.com)
-```
-jekyll serve
-```
