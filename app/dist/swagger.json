@@ -2,9 +2,9 @@
     "swagger": "2.0",
     "info": {
         "version": "0.0.0",
-        "title": "User API"
+        "title": "JWT Authentication API"
     },
-    "host": "localhost:3000",
+    "host": "agile-thicket-20112.herokuapp.com",
     "basePath": "/v1",
     "paths": {
         "/users": {
@@ -46,7 +46,7 @@
                     "User"
                 ],
                 "summary": "Register User",
-                "description": "The Users endpoint returns information about the user\n",
+                "description": "Register a new user\n",
                 "parameters": [
                     {
                         "name": "firstName",
@@ -79,7 +79,7 @@
                     {
                         "name": "type",
                         "in": "formData",
-                        "description": "Role of User",
+                        "description": "Type of User",
                         "required": true,
                         "type": "string",
                         "enum": [
@@ -109,7 +109,7 @@
                     "User"
                 ],
                 "summary": "Get User",
-                "description": "This endpoint returns information about the user by its id.\n",
+                "description": "This endpoint returns user information by its id.\n",
                 "parameters": [
                     {
                         "name": "x-access-token",
@@ -146,7 +146,7 @@
                     "User"
                 ],
                 "summary": "Update User",
-                "description": "This endpoint updates information of the user by its id.\n",
+                "description": "This endpoint updates user information by its id.\n",
                 "parameters": [
                     {
                         "name": "x-access-token",
@@ -198,8 +198,8 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Authenticate user User",
-                "description": "The Users endpoint returns information about the user and auth token\n",
+                "summary": "Authenticate User",
+                "description": "Authenticate user. this will return user information and access token.\n",
                 "parameters": [
                     {
                         "name": "email",
@@ -238,7 +238,7 @@
                     "User"
                 ],
                 "summary": "Authorize User with google auth info.",
-                "description": "The Users endpoint returns information about the user\n",
+                "description": "The Users endpoint returns user information\n",
                 "parameters": [
                     {
                         "name": "accessToken",
@@ -277,7 +277,7 @@
                     "User"
                 ],
                 "summary": "Authorize User with facebook auth info.",
-                "description": "The Users endpoint returns information about the user\n",
+                "description": "The Users endpoint returns user information\n",
                 "parameters": [
                     {
                         "name": "accessToken",
